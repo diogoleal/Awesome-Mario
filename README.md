@@ -1,5 +1,8 @@
 #Awesome Mario
 
+
+![Awesome Mario](https://raw.githubusercontent.com/diogoleal/Awesome-Mario/master/screenshot.png)
+
 - Font: Liberation
 
 ## Shortcuts
