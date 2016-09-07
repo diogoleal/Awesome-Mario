@@ -11,6 +11,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local vicious = require("vicious")
+require("collision")()
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -46,8 +47,8 @@ themes_dir = (config_dir .. "/themes/default/")
 beautiful.init(themes_dir .. "/theme.lua")
 
 -- This is used later as the default terminal, browser and editor to run.
-terminal = "xterm"
---terminal = "urxvtc"
+--terminal = "xterm"
+terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -90,7 +91,8 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9"}, s, layouts[1])
+    tags[s] = awful.tag({ "1", "2", "3", "4", "5"}, s, layouts[1])
+--    tags[s] = awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9"}, s, layouts[1])
 end
 -- }}}
 
@@ -110,12 +112,12 @@ clockicon = wibox.widget.imagebox()
 clockicon:set_image(beautiful.clock)
 
 --{{ Battery Widget }} --
-
 batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, '<span font="Liberation 10" color="#AAAAAA" background="#1F2428">$1$2% </span>', 30, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, '<span font="Liberation 10" color="#AAAAAA" background="#1F2428"> $1$2% </span>', 30, "BAT1")
 
 baticon = wibox.widget.imagebox()
 baticon:set_image(beautiful.ac)
+
 --{{ Net Widget }} --
 
 netwidget = wibox.widget.textbox()
@@ -315,8 +317,8 @@ end
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+--    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+--    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
 -- {{ Shuts down Computer }} --
